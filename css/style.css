@@ -1,1 +1,243 @@
+/* ========================================
+   GENERAL
+   ======================================== */
 
+   * {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f5f0;
+    color: #222222;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 24px 6%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background-color: #f7f5f0;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+
+
+/* ========================================
+   HERO
+   ======================================== */
+
+.hero {
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 80px 6%;
+}
+
+.hero-content {
+    max-width: 950px;
+}
+
+.eyebrow {
+    margin: 0 0 24px 0;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.18em;
+}
+
+.hero h1 {
+    margin: 0;
+
+    max-width: 950px;
+
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+}
+
+.hero-description {
+    max-width: 600px;
+
+    margin: 36px 0 0 0;
+
+    font-size: 1.2rem;
+    line-height: 1.6;
+
+    color: #555555;
+}
+
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+
+    margin-top: 36px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 14px 22px;
+
+    border: 1px solid #222222;
+
+    font-size: 0.9rem;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.button.primary {
+    background-color: #222222;
+    color: #f7f5f0;
+}
+
+.button.secondary {
+    background-color: transparent;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button.primary:hover {
+    background-color: transparent;
+    color: #222222;
+}
+
+
+/* ========================================
+   PLACEHOLDER SECTIONS
+   ======================================== */
+
+.placeholder-section {
+    min-height: 60vh;
+
+    padding: 120px 6%;
+
+    border-top: 1px solid #d8d5cf;
+}
+
+.placeholder-section h2 {
+    max-width: 800px;
+
+    margin: 0;
+
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    padding: 40px 6%;
+
+    border-top: 1px solid #d8d5cf;
+
+    color: #666666;
+
+    font-size: 0.85rem;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 20px 5%;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .hero {
+        min-height: 80vh;
+
+        padding: 60px 5%;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 14vw, 5rem);
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .placeholder-section {
+        min-height: 50vh;
+        padding: 80px 5%;
+    }
+
+}
