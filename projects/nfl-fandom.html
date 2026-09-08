@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NFL Fandom Sentiment & Geographic Analysis — Elisabeth Kollrack</title>
+    <meta name="description" content="How geographically concentrated are NFL fan bases, and how does fan sentiment shift with wins and losses? An undergraduate honors thesis by Elisabeth Kollrack.">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                EK
+            </a>
+
+            <div class="nav-links">
+                <a href="../index.html#work">Work</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+        <section class="detail-hero">
+
+            <a href="../index.html#projects" class="back-link">
+                ← Back to projects
+            </a>
+
+            <p class="project-type">
+                UNDERGRADUATE HONORS THESIS · DATA SCIENCE
+            </p>
+
+            <h1>
+                NFL Fandom Sentiment &<br>
+                Geographic Analysis
+            </h1>
+
+            <p class="project-question">
+                How geographically concentrated are NFL fan bases, and how
+                does fan sentiment change in response to game outcomes?
+            </p>
+
+            <div class="tags">
+                <span>Python</span>
+                <span>Sentiment Analysis</span>
+                <span>Geospatial Analysis</span>
+                <span>Twitter/X Data</span>
+                <span>Data Visualization</span>
+                <span>Regression Analysis</span>
+            </div>
+
+            <div class="detail-meta-row">
+                <span><strong>Timeline</strong> &nbsp;March 2025 – April 2026</span>
+                <span><strong>Institution</strong> &nbsp;University of Vermont, Computational Story Lab</span>
+                <span><strong>Advisor</strong> &nbsp;Prof. Christopher Danforth</span>
+            </div>
+
+        </section>
+
+
+        <!-- Stat strip -->
+        <section class="stat-strip">
+
+            <div class="stat-item">
+                <p class="stat-number">4 seasons</p>
+                <p class="stat-label">2011–2014 NFL regular seasons analyzed, across all 32 teams</p>
+            </div>
+
+            <div class="stat-item">
+                <p class="stat-number">121–782 km</p>
+                <p class="stat-label">Range of estimated fandom radii across the league</p>
+            </div>
+
+            <div class="stat-item">
+                <p class="stat-number">ρ = 0.85</p>
+                <p class="stat-label">Correlation between local and overall fan sentiment</p>
+            </div>
+
+            <div class="stat-item">
+                <p class="stat-number">r = 0.33</p>
+                <p class="stat-label">Correlation between win percentage and tweet sentiment</p>
+            </div>
+
+        </section>
+
+
+        <!-- Overview -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                OVERVIEW
+            </p>
+
+            <h2>
+                Measuring fandom the way fans actually behave, not the way
+                ticket sales say they should.
+            </h2>
+
+            <p>
+                Sports teams are usually described as belonging to a single
+                city, but fan bases rarely stay inside city limits. For my
+                honors thesis, I used a large corpus of geotagged, game-related
+                tweets to measure where NFL fan bases actually extend to, and
+                how fan emotion shifts in real time as games are played and
+                won or lost.
+            </p>
+
+            <p>
+                The project combines geospatial analysis, natural language
+                sentiment scoring, and statistical modeling to answer two
+                connected questions: how far does a team's fan base
+                geographically reach, and how predictable is the emotional
+                arc fans go through during a game.
+            </p>
+
+        </section>
+
+
+        <!-- Methodology -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                APPROACH
+            </p>
+
+            <h2>
+                Data, methods, and modeling
+            </h2>
+
+            <div class="detail-two-col">
+
+                <div>
+                    <p>
+                        Working with Twitter's Decahose API (a random 10%
+                        sample of public tweets), I collected tweets tagged
+                        with team-specific hashtags for every regular season
+                        game between 2011 and 2014, spanning a seven-day
+                        window around each matchup.
+                    </p>
+
+                    <p>
+                        To estimate each team's geographic reach, I built a
+                        <strong>fandom radius</strong> metric: normalized tweet
+                        activity per capita by metropolitan area, then found
+                        the distance from a team's home city at which that
+                        activity drops to background levels. Distances were
+                        computed with <code>geopandas</code> using a projected
+                        coordinate system for accuracy, and metropolitan
+                        population data came from Core Based Statistical Area
+                        estimates.
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        For emotion, I used the Hedonometer, a word-level
+                        happiness-scoring instrument, to track sentiment for
+                        winning and losing teams from three hours before
+                        kickoff through four hours after. Team and player
+                        names were filtered out beforehand so the scores
+                        reflected reactions to the game, not the words in a
+                        team's own name.
+                    </p>
+
+                    <p>
+                        I also tested whether team success predicts fan
+                        sentiment using a regression of average win
+                        percentage against average tweet sentiment across the
+                        four seasons, and used Reduced Major Axis regression
+                        to quantify how fandom intensity scales with
+                        metropolitan area size.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Geographic findings -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                FINDING 01
+            </p>
+
+            <h2>
+                Fan bases vary enormously in geographic reach
+            </h2>
+
+            <p>
+                Fandom radii ranged from 121 km for the Baltimore Ravens to
+                782 km for the Seattle Seahawks. Teams with few nearby
+                competitors, like Seattle and Minnesota, pulled in fans from
+                far outside their home metro area, while teams packed into
+                dense regions with several nearby franchises, like Baltimore
+                and Washington, had much more geographically concentrated
+                followings. Fandom intensity scaled with metro area size at
+                a rate slower than proportional (α = 0.53, R² = 0.64),
+                meaning fan interest spreads out geographically rather than
+                staying concentrated in the largest markets.
+            </p>
+
+            <div class="figure-block">
+                <img src="../images/nfl-fandom/fandom-radius-map.png" alt="Map of the United States showing each NFL team's estimated fandom radius as a colored circle centered on its home city.">
+                <p class="figure-caption">
+                    <strong>Fig. 1</strong> — Estimated fandom radius for each
+                    NFL team, based on geotagged tweet activity relative to
+                    each team's home city. Larger circles indicate fan bases
+                    that extend further beyond the home market.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- In-game sentiment findings -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                FINDING 02
+            </p>
+
+            <h2>
+                Winning and losing fans live out two different emotional
+                stories
+            </h2>
+
+            <p>
+                Before kickoff, fans of both eventual winners and losers
+                tweet with almost identical, high optimism. Once the game
+                starts, sentiment drops for everyone, ticks up slightly at
+                halftime, and then splits: sentiment for the winning team's
+                fans climbs steadily through the second half and finishes
+                above its pre-game level, while sentiment for the losing
+                team's fans stays flat and ends near the lowest points
+                typically observed across all of Twitter.
+            </p>
+
+            <p>
+                The shape lines up closely with two of the emotional arcs
+                Kurt Vonnegut argued show up again and again in the stories
+                people tell: winning fans trace a "Man in a Hole" arc
+                (a fall followed by recovery), while losing fans trace a
+                straightforward "Tragedy."
+            </p>
+
+            <p>
+                The idea traces back to a 1965 lecture in which Vonnegut
+                sketched these recurring shapes on a chalkboard, arguing
+                that most stories follow one of a handful of emotional
+                paths.<sup>1</sup> It stayed a fun, mostly qualitative idea
+                for decades. In 2016, researchers at the University of
+                Vermont's <a href="https://compstorylab.org/" target="_blank" rel="noopener noreferrer">Computational Story Lab</a> —
+                the same lab that advised this thesis — put it to a
+                quantitative test. Using the
+                <a href="https://hedonometer.org/" target="_blank" rel="noopener noreferrer">Hedonometer</a>,
+                the same sentiment instrument I use here, they scored
+                emotional trajectories across more than a thousand works of
+                fiction and found the stories really do cluster into six
+                dominant shapes, "Man in a Hole" among them.<sup>2</sup>
+            </p>
+
+            <p>
+                My results echo that pattern directly, just compressed into
+                the three hours of a single football game instead of an
+                entire novel: winning fans live out "Man in a Hole" in real
+                time, and losing fans live out "Tragedy." It's a fun
+                parallel, but a genuinely useful one too — it shows sentiment
+                tracks real-time game events far more strongly than
+                geography does, which matters for anyone trying to use
+                social sentiment as a live proxy for engagement.
+            </p>
+
+            <div class="figure-block">
+                <img src="../images/nfl-fandom/sentiment-trajectory.png" alt="Line chart showing average tweet sentiment for winning versus losing teams from three hours before kickoff to four hours after, diverging sharply after halftime.">
+                <p class="figure-caption">
+                    <strong>Fig. 4(d)</strong> — Average tweet sentiment for
+                    eventual winning (orange) and losing (blue) teams,
+                    tracked in 15-minute intervals relative to kickoff.
+                    Sentiment starts nearly identical, dips together at
+                    kickoff, and diverges sharply after halftime.
+                </p>
+            </div>
+
+            <p class="figure-caption citation-list">
+                <span><sup>1</sup> David Comberg, recording of Kurt Vonnegut's
+                lecture "On the Shapes of Stories" (1995/2010) —
+                <a href="https://www.youtube.com/watch?v=oP3c1h8v2ZQ" target="_blank" rel="noopener noreferrer">watch on YouTube</a>.</span>
+                <span><sup>2</sup> A. J. Reagan, L. Mitchell, D. Kiley, C. M.
+                Danforth, and P. S. Dodds, "The Emotional Arcs of Stories
+                Are Dominated by Six Basic Shapes,"
+                <em>EPJ Data Science</em> 5, 31 (2016) —
+                <a href="https://doi.org/10.1140/epjds/s13688-016-0093-1" target="_blank" rel="noopener noreferrer">read the paper</a>.</span>
+            </p>
+
+        </section>
+
+
+        <!-- Takeaways -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                WHY IT MATTERS
+            </p>
+
+            <h2>
+                Takeaways
+            </h2>
+
+            <ul class="takeaway-list">
+
+                <li>
+                    Geography explains where fans are, but not how they feel:
+                    sentiment inside a team's fandom radius correlated at
+                    ρ = 0.85 with sentiment across all tweets about that team,
+                    suggesting emotional tone is remarkably consistent
+                    regardless of a fan's location.
+                </li>
+
+                <li>
+                    Team performance is only a weak predictor of fan mood.
+                    Win percentage and average sentiment correlated at just
+                    r = 0.33, meaning winning helps, but culture, rivalries,
+                    and fan expectations shape sentiment just as much.
+                </li>
+
+                <li>
+                    In-game social sentiment could complement traditional fan
+                    engagement metrics like TV ratings and attendance,
+                    especially for measuring real-time reaction to specific
+                    plays, coaching decisions, or officiating calls.
+                </li>
+
+                <li>
+                    Blowout games generated more tweets on average than close
+                    games during parts of play, likely driven by highlight
+                    worthy moments rather than suspense alone.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- Limitations -->
+        <section class="detail-section">
+
+            <p class="detail-section-label">
+                LIMITATIONS & NEXT STEPS
+            </p>
+
+            <h2>
+                Being honest about the constraints
+            </h2>
+
+            <div class="limitations-box">
+                <p>
+                    The analysis only covers 2011–2014, the window when
+                    geotagged tweets were common before Twitter's mobile app
+                    changed in 2015, and relies on a 10% sample of geolocated
+                    tweets, a small and possibly non-representative slice of
+                    all fans. Word-level sentiment scoring also can't detect
+                    sarcasm or football-specific slang. Future work could
+                    compare sentiment against betting odds, or break sentiment
+                    down by individual scoring plays to see which moments
+                    move the needle most.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Footer nav -->
+        <div class="detail-footer-nav">
+
+            <a href="../index.html#projects" class="button secondary">
+                ← Back to projects
+            </a>
+
+            <a href="../index.html#contact" class="button primary">
+                Get in touch
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 Elisabeth Kollrack
+        </p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>
