@@ -516,11 +516,11 @@ GENERAL
 
   .beyond-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 
   margin-top: 56px;
-  max-width: 1100px;
+  max-width: 760px;
   }
 
   .beyond-gallery figure {
@@ -740,6 +740,20 @@ PROJECT DETAIL PAGE
 
 .back-link:hover {
   opacity: 0.5;
+}
+
+.detail-top-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin-bottom: 40px;
+}
+
+.detail-top-links .back-link {
+  margin-bottom: 0;
 }
 
 .detail-hero {
